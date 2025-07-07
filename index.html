@@ -1,25 +1,534 @@
-<span style="font-family:monospace"><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">function populateUpgrades() {</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">UIElements.upgradesPanel.innerHTML = '';</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">const nextUpgrades = ALL_UPGRADES.filter(u =&gt; !u.purchased).slice(0, 10);</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">let currentTierHeader = "";</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br>
-<br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">nextUpgrades.forEach(upgrade =&gt; {</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">if (upgrade.tier !== currentTierHeader) {</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">currentTierHeader = upgrade.tier;</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">const tierHeader = document.createElement('div');</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">tierHeader.className = 'upgrade-tier-header';</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">tierHeader.textContent = currentTierHeader;</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">UIElements.upgradesPanel.appendChild(tierHeader);</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">}</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br>
-<br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">const button = document.createElement('button');</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">button.id = `upgrade-${upgrade.id}`;</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">button.className = 'btn w-full text-left p-2 rounded border border-gray-600 hover:bg-gray-</span><br>700 disabled:opacity-50 disabled:cursor-not-allowed';<span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">button.innerHTML = `</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">&lt;div class="font-bold"&gt;${upgrade.name} (#${upgrade.id + 1})&lt;/div&gt;</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">&lt;div class="text-xs text-slate-300"&gt;${upgrade.desc}&lt;/div&gt;</span><span style="color:#eff0f1;background-color:#151b21;">
-</span><br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">&lt;div class="text-xs text-amber-300"&gt;Cost: ${formatNumber(upgrade.cost)} ${upgrade.curr</span><br>ency}&lt;/div&gt;`;<span style="color:#eff0f1;background-color:#151b21;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Rubbish Bin - Tiered Visuals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Space Mono', monospace;
+            background-color: #0c0a09;
+            color: #e2e8f0;
+        }
+        .visual-area {
+            width: 300px;
+            height: 300px;
+            border: 2px solid #4a5568;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            background-color: #1a202c;
+            background-size: cover;
+            background-position: center;
+        }
+        .btn {
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+        .btn:active:not(:disabled) {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+        .log-panel {
+            height: 150px;
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid #4a5568;
+        }
+        .tab-content {
+            background-color: rgba(26, 32, 44, 0.7);
+            border: 1px solid #4a5568;
+        }
+        .tab-button.active {
+            background-color: #4a5568;
+            border-color: #718096;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #fde047; /* yellow-300 */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        .small-spinner {
+             border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .trash-particle {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: fly-to-bin 1.2s ease-in forwards;
+            will-change: transform, opacity;
+            z-index: 100;
+        }
+        @keyframes fly-to-bin {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--target-x), var(--target-y)) scale(0.1); opacity: 0; }
+        }
+        .upgrade-tier-header {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #94a3b8; /* slate-400 */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem;
+            background-color: rgba(0,0,0,0.2);
+            border-top: 1px solid #4a5568;
+            border-bottom: 1px solid #4a5568;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-stone-950">
+    <div id="animation-container" class="fixed inset-0 pointer-events-none"></div>
+    <div id="app" class="game-container">
+        <div class="w-full max-w-5xl mx-auto p-4 md:p-6">
+            <header class="text-center mb-6">
+                <h1 class="text-3xl md:text-5xl font-bold text-amber-300">Cosmic Rubbish Bin</h1>
+                <p class="text-slate-400">The 1,000 Steps to Nugget Nirvana</p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Left Column: Visual and Core Action -->
+                <div class="lg:col-span-1 flex flex-col items-center gap-4">
+                    <div id="visual-area" class="visual-area">
+                        <div id="visual-content" class="text-6xl">🗑️</div>
+                    </div>
+                    <button id="add-trash-btn" class="btn bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg w-full">Add Trash</button>
+                    <div class="text-center w-full bg-gray-900 p-3 rounded-lg">
+                        <h3 class="font-bold text-lg text-amber-200">Total Mass</h3>
+                        <p id="mass-display" class="text-2xl font-mono">0.00 kg</p>
+                    </div>
+                </div>
+
+                <!-- Middle Column: Stats -->
+                <div class="lg:col-span-1 bg-gray-900/50 p-4 rounded-lg border border-gray-700">
+                    <h2 class="text-xl font-bold text-center mb-4 text-amber-200">Experiment Vitals</h2>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between"><span>Trash/sec:</span> <span id="tps-display" class="font-mono">0</span></div>
+                        <div class="flex justify-between"><span>Click Power:</span> <span id="tpc-display" class="font-mono">1</span></div>
+                        <div class="flex justify-between"><span>Stage:</span> <span id="stage-display" class="font-mono">Rubbish Bin</span></div>
+                        <div id="energy-stat" class="flex justify-between hidden"><span>Energy/sec:</span> <span id="eps-display" class="font-mono">0</span></div>
+                        <div id="elements-stat" class="flex justify-between hidden"><span>Heavy Elements:</span> <span id="elements-display" class="font-mono">0</span></div>
+                        <div id="singularity-stat" class="flex justify-between hidden"><span>Singularity Power:</span> <span id="singularity-display" class="font-mono">0</span></div>
+                        <div class="flex justify-between pt-2 border-t border-gray-700"><span>Upgrades Purchased:</span> <span id="upgrades-purchased-display" class="font-mono">0 / 1000</span></div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Upgrades -->
+                <div class="lg:col-span-1">
+                     <h2 class="text-xl font-bold text-center mb-2 text-amber-200">Technology Progression</h2>
+                    <div id="upgrades-panel" class="tab-content p-2 space-y-2 h-[350px] overflow-y-auto">
+                        <!-- Upgrades will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Log Panel -->
+            <div class="mt-6">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-lg font-bold text-amber-200">Experiment Log</h2>
+                    <button id="ai-log-btn" class="btn bg-indigo-600 hover:bg-indigo-500 text-white text-xs py-1 px-3 rounded">✨ Generate AI Log</button>
+                </div>
+                <div id="log-panel" class="log-panel p-2 overflow-y-auto text-sm font-mono rounded-lg">
+                    <div>Log entry #1: The experiment begins. It's just a bin, for now.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modals -->
+        <div id="win-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+            <div class="bg-amber-100 text-stone-800 p-8 rounded-lg text-center max-w-lg shadow-2xl">
+                <h2 class="text-3xl font-bold text-amber-600 mb-4">THE WORK IS DONE</h2>
+                <div id="win-visual" class="text-8xl my-6">🍗</div>
+                <div id="win-story" class="text-left max-h-60 overflow-y-auto border-t border-b border-amber-300 py-4 my-4">
+                    <p>After 1,000 technological leaps, from reinforcing a rubbish bin to rewriting the laws of physics, you have achieved the ultimate goal. The Chicken Nugget Pocket Dimension is real, stable, and delicious.</p>
+                </div>
+                <button onclick="location.reload()" class="btn mt-4 bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded">Start a New Universe</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- GAME STATE ---
+            let gameState = {
+                mass: 0, trashPerClick: 1, trashPerSecond: 0, stage: 'Rubbish Bin',
+                energyPerSecond: 0, heavyElements: 0, singularityPower: 0,
+                logCounter: 1, upgradesPurchased: 0, currentTier: '',
+            };
+
+            // --- DOM ELEMENTS ---
+            const UIElements = {
+                addTrashBtn: document.getElementById('add-trash-btn'), massDisplay: document.getElementById('mass-display'), tpsDisplay: document.getElementById('tps-display'), tpcDisplay: document.getElementById('tpc-display'), stageDisplay: document.getElementById('stage-display'), epsDisplay: document.getElementById('eps-display'), elementsDisplay: document.getElementById('elements-display'), singularityDisplay: document.getElementById('singularity-display'), logPanel: document.getElementById('log-panel'), upgradesPanel: document.getElementById('upgrades-panel'), visualArea: document.getElementById('visual-area'), visualContent: document.getElementById('visual-content'), energyStat: document.getElementById('energy-stat'), elementsStat: document.getElementById('elements-stat'), singularityStat: document.getElementById('singularity-stat'), winModal: document.getElementById('win-modal'), winStory: document.getElementById('win-story'), winVisual: document.getElementById('win-visual'), aiLogBtn: document.getElementById('ai-log-btn'), animationContainer: document.getElementById('animation-container'),
+                upgradesPurchasedDisplay: document.getElementById('upgrades-purchased-display'),
+            };
+
+            // --- DATA & MODELING ---
+            const STAGES = {
+                'Rubbish Bin': { nextStage: 'Planetary Core', mass_req: 1e6, visual_prompt: "A humble metal rubbish bin overflowing with colorful trash, sitting in a suburban backyard." },
+                'Planetary Core': { nextStage: 'Gas Giant', mass_req: 1e12, visual_prompt: "A glowing, molten planetary core of iron and rock, digital art, cinematic lighting." },
+                'Gas Giant': { nextStage: 'Protostar', mass_req: 1e24, visual_prompt: "A swirling gas giant planet with colorful bands of orange and white clouds, like Jupiter, digital painting, epic scale." },
+                'Protostar': { nextStage: 'Star', mass_req: 1e30, visual_prompt: "A nascent protostar, a glowing hot ball of gas contracting out of a massive cosmic cloud, surrounded by a protoplanetary disk, space art." },
+                'Star': { nextStage: 'Supernova', mass_req: 1.8e31, visual_prompt: "A brilliant, stable yellow star like our sun, shining brightly in the blackness of space, photorealistic." },
+                'Supernova': { nextStage: 'Black Hole', mass_req: 6e31, visual_prompt: "An exploding star, a supernova, a cataclysmic, beautiful explosion of light and color, Hubble telescope style." },
+                'Black Hole': { nextStage: 'Wormhole', singularity_req: 1e6, visual_prompt: "A supermassive black hole in space, bending and warping the light of the stars behind it, showing a gravitational lens effect." },
+                'Wormhole': { nextStage: 'Chicken Nugget Pocket Dimension', singularity_req: 1e12, visual_prompt: "A shimmering, iridescent tunnel through spacetime, a wormhole connecting two distant points in the universe, psychedelic colors." },
+                'Chicken Nugget Pocket Dimension': { visual_prompt: "An infinite dimension made entirely of golden brown, perfectly cooked chicken nuggets, some floating gently in a hazy, delicious-looking void." }
+            };
+
+            let ALL_UPGRADES = [];
+            let UPGRADE_TIERS = [];
+
+            // --- GEMINI API INTEGRATION ---
+            const API_KEY = ""; // Handled by environment
+            const TEXT_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+            const IMAGE_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${API_KEY}`;
+
+            async function callGeminiText(prompt) {
+                try {
+                    const response = await fetch(TEXT_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }] }) });
+                    if (!response.ok) throw new Error(`API call failed: ${response.statusText}`);
+                    const result = await response.json();
+                    return result.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (error) {
+                    console.error("Gemini Text API Error:", error);
+                    addLog(`AI communication error: ${error.message}`);
+                    return null;
+                }
+            }
+            
+            async function callGeminiImage(prompt) {
+                try {
+                    const response = await fetch(IMAGE_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ instances: [{ prompt }], parameters: { "sampleCount": 1 } }) });
+                    if (!response.ok) throw new Error(`API call failed: ${response.statusText}`);
+                    const result = await response.json();
+                    return result.predictions?.[0]?.bytesBase64Encoded;
+                } catch (error) {
+                    console.error("Gemini Image API Error:", error);
+                    addLog(`AI visual cortex error: ${error.message}`);
+                    return null;
+                }
+            }
+
+            // --- CORE GAME LOGIC ---
+            function formatNumber(num) {
+                if (num < 1000) return num.toFixed(2);
+                return num.toExponential(2);
+            }
+            
+            function addLog(message, isAI = false) {
+                gameState.logCounter++;
+                const newLog = document.createElement('div');
+                const prefix = isAI ? '✨ AI Log' : `Log #${gameState.logCounter}`;
+                newLog.innerHTML = `<span class="text-amber-300">${prefix}:</span> ${message}`;
+                UIElements.logPanel.appendChild(newLog);
+                UIElements.logPanel.scrollTop = UIElements.logPanel.scrollHeight;
+            }
+
+            function generateAllUpgrades() {
+                UPGRADE_TIERS = [
+                    { name: "Basic Containment", start: 0, end: 50, baseCost: 10, costGrowth: 1.15, effectType: 'tpc', effectGrowth: 1.05, currency: 'mass', visual_prompt: "A massive, reinforced, high-tech rubbish bin made of titanium, with glowing blue lights and complex locking mechanisms. Digital art." },
+                    { name: "Industrial Automation", start: 50, end: 200, baseCost: 1e4, costGrowth: 1.2, effectType: 'tps', effectGrowth: 1.1, currency: 'mass', visual_prompt: "A vast industrial complex with multiple conveyor belts carrying trash into a central, glowing processing unit under a cloudy sky. Factory concept art." },
+                    { name: "Planetary Engineering", start: 200, end: 400, baseCost: 1e15, costGrowth: 1.25, effectType: 'tps', effectGrowth: 1.15, currency: 'mass', visual_prompt: "Terraforming machines and massive cranes constructing structures on the surface of a barren, rocky planet. Sci-fi concept art." },
+                    { name: "Stellar Manipulation", start: 400, end: 600, baseCost: 1e32, costGrowth: 1.3, effectType: 'eps', effectGrowth: 1.2, currency: 'mass', visual_prompt: "A Dyson sphere-like structure being constructed around a bright yellow star, with energy beams transferring power. Epic space art." },
+                    { name: "Exotic Physics", start: 600, end: 800, baseCost: 1e6, costGrowth: 1.35, effectType: 'sps', effectGrowth: 1.25, currency: 'energyPerSecond', visual_prompt: "Strange scientific instruments and rings of energy surrounding a swirling black hole, manipulating the event horizon. Abstract sci-fi art." },
+                    { name: "Dimensional Gastronomy", start: 800, end: 1000, baseCost: 1e9, costGrowth: 1.4, effectType: 'sps', effectGrowth: 1.3, currency: 'singularityPower', visual_prompt: "A swirling portal of golden-brown energy, with perfectly cooked chicken nuggets emerging from it into the void of space. Humorous, epic food art." },
+                ];
+
+                const names = {
+                    tpc: ["Reinforced Bin", "Stronger Lids", "Denser Materials", "Ergonomic Handle", "Self-Sorting Click"],
+                    tps: ["Conveyor Belt", "Trash Chute", "Automated Crane", "Recycling Center", "Waste Funnel"],
+                    eps: ["Fusion Injector", "Corona Tap", "Stellar Dynamo", "Photon Collector", "Core Stabilizer"],
+                    sps: ["Event Horizon Drill", "Ergosphere Extractor", "Gravity Well Modulator", "Spacetime Resonator", "Singularity Catalyst"],
+                };
+
+                UPGRADE_TIERS.forEach(tier => {
+                    for (let i = tier.start; i < tier.end; i++) {
+                        const level = i - tier.start;
+                        const cost = tier.baseCost * Math.pow(tier.costGrowth, level);
+                        const effectValue = Math.pow(tier.effectGrowth, level) * (i + 1);
+                        
+                        let effect, description, name;
+                        const nameList = names[tier.effectType];
+                        name = `${nameList[level % nameList.length]} Mk ${Math.floor(level / nameList.length) + 1}`;
+
+                        switch(tier.effectType) {
+                            case 'tpc': 
+                                effect = () => gameState.trashPerClick += effectValue;
+                                description = `+${formatNumber(effectValue)} trash per click`;
+                                break;
+                            case 'tps':
+                                effect = () => gameState.trashPerSecond += effectValue;
+                                description = `+${formatNumber(effectValue)} trash/sec`;
+                                break;
+                            case 'eps':
+                                effect = () => gameState.energyPerSecond += effectValue;
+                                description = `+${formatNumber(effectValue)} energy/sec`;
+                                break;
+                            case 'sps':
+                                effect = () => gameState.singularityPower += effectValue;
+                                description = `+${formatNumber(effectValue)} singularity power`;
+                                break;
+                        }
+
+                        ALL_UPGRADES.push({
+                            id: i, name: name, desc: description, cost: cost,
+                            currency: tier.currency, tier: tier.name, effect: effect, purchased: false
+                        });
+                    }
+                });
+            }
+
+            function setStage(newStage) {
+                gameState.stage = newStage;
+                addLog(`The cosmic rubbish has evolved! We've reached the ${newStage} stage.`);
+                const stageInfo = STAGES[newStage];
+                if (stageInfo) {
+                    updateVisuals(stageInfo.visual_prompt, '💥');
+                }
+                populateUpgrades();
+                
+                if (newStage === 'Star') { gameState.energyPerSecond += 1000; }
+                if (newStage === 'Supernova') {
+                    const elementsGained = Math.floor(gameState.mass / 1e30);
+                    gameState.heavyElements += elementsGained;
+                    gameState.mass /= 10;
+                    addLog(`KABOOM! Supernova forged ${formatNumber(elementsGained)} heavy elements.`);
+                }
+                if (newStage === 'Black Hole') { gameState.singularityPower += 1000; }
+            }
+
+            // --- UI & VISUALS ---
+            function createTrashAnimation() {
+                const amount = gameState.trashPerClick;
+                const particleCount = Math.min(Math.ceil(Math.log10(amount + 1) * 2), 30);
+                const trashEmojis = ['🗑️', '🍌', '🍎', '📦', '🗞️', '🍾'];
+                const binRect = UIElements.visualArea.getBoundingClientRect();
+                const targetX = binRect.left + binRect.width / 2;
+                const targetY = binRect.top + binRect.height / 2;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.textContent = trashEmojis[Math.floor(Math.random() * trashEmojis.length)];
+                    particle.className = 'trash-particle';
+                    
+                    const startX = Math.random() * window.innerWidth;
+                    const startY = Math.random() * window.innerHeight;
+                    particle.style.left = `${startX}px`;
+                    particle.style.top = `${startY}px`;
+
+                    const deltaX = targetX - startX;
+                    const deltaY = targetY - startY;
+                    particle.style.setProperty('--target-x', `${deltaX}px`);
+                    particle.style.setProperty('--target-y', `${deltaY}px`);
+
+                    UIElements.animationContainer.appendChild(particle);
+                    setTimeout(() => particle.remove(), 1200);
+                }
+            }
+            
+            function updateUI() {
+                UIElements.massDisplay.textContent = `${formatNumber(gameState.mass)} kg`;
+                UIElements.tpsDisplay.textContent = formatNumber(gameState.trashPerSecond);
+                UIElements.tpcDisplay.textContent = formatNumber(gameState.trashPerClick);
+                UIElements.stageDisplay.textContent = gameState.stage;
+                UIElements.upgradesPurchasedDisplay.textContent = `${gameState.upgradesPurchased} / 1000`;
+
+                const showEnergy = ['Star', 'Supernova', 'Black Hole', 'Wormhole', 'Chicken Nugget Pocket Dimension'].includes(gameState.stage);
+                UIElements.energyStat.classList.toggle('hidden', !showEnergy);
+                if (showEnergy) UIElements.epsDisplay.textContent = formatNumber(gameState.energyPerSecond);
+
+                const showElements = ['Supernova', 'Black Hole', 'Wormhole', 'Chicken Nugget Pocket Dimension'].includes(gameState.stage);
+                UIElements.elementsStat.classList.toggle('hidden', !showElements);
+                if (showElements) UIElements.elementsDisplay.textContent = formatNumber(gameState.heavyElements);
+
+                const showSingularity = ['Black Hole', 'Wormhole', 'Chicken Nugget Pocket Dimension'].includes(gameState.stage);
+                UIElements.singularityStat.classList.toggle('hidden', !showSingularity);
+                if (showSingularity) UIElements.singularityDisplay.textContent = formatNumber(gameState.singularityPower);
+            }
+
+            async function updateVisuals(prompt, fallbackEmoji = '❓') {
+                UIElements.visualContent.innerHTML = '<div class="spinner"></div>';
+                UIElements.visualArea.style.backgroundImage = '';
+
+                if (!prompt) {
+                     UIElements.visualContent.innerHTML = fallbackEmoji;
+                     return;
+                }
+
+                const imageBase64 = await callGeminiImage(prompt);
+                if (imageBase64) {
+                    UIElements.visualContent.innerHTML = '';
+                    UIElements.visualArea.style.backgroundImage = `url(data:image/png;base64,${imageBase64})`;
+                } else {
+                    UIElements.visualContent.innerHTML = fallbackEmoji;
+                }
+            }
+
+            function populateUpgrades() {
+                UIElements.upgradesPanel.innerHTML = '';
+                const nextUpgrades = ALL_UPGRADES.filter(u => !u.purchased).slice(0, 10);
+                let currentTierHeader = "";
+
+                nextUpgrades.forEach(upgrade => {
+                    if (upgrade.tier !== currentTierHeader) {
+                        currentTierHeader = upgrade.tier;
+                        const tierHeader = document.createElement('div');
+                        tierHeader.className = 'upgrade-tier-header';
+                        tierHeader.textContent = currentTierHeader;
+                        UIElements.upgradesPanel.appendChild(tierHeader);
+                    }
+
+                    const button = document.createElement('button');
+                    button.id = `upgrade-${upgrade.id}`;
+                    button.className = 'btn w-full text-left p-2 rounded border border-gray-600 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed';
+                    button.innerHTML = `
+                        <div class="font-bold">${upgrade.name} (#${upgrade.id + 1})</div>
+                        <div class="text-xs text-slate-300">${upgrade.desc}</div>
+                        <div class="text-xs text-amber-300">Cost: ${formatNumber(upgrade.cost)} ${upgrade.currency}</div>`;
+                    
+                    button.disabled = !(gameState[upgrade.currency] >= upgrade.cost);
+
+                    button.addEventListener('click', () => {
+                        if (gameState[upgrade.currency] >= upgrade.cost) {
+                            gameState[upgrade.currency] -= upgrade.cost;
+                            upgrade.effect();
+                            upgrade.purchased = true;
+                            gameState.upgradesPurchased++;
+
+                            // Check for tier change to update visuals
+                            const nextAvailableUpgrade = ALL_UPGRADES.find(u => !u.purchased);
+                            if (nextAvailableUpgrade && nextAvailableUpgrade.tier !== gameState.currentTier) {
+                                gameState.currentTier = nextAvailableUpgrade.tier;
+                                const newTierInfo = UPGRADE_TIERS.find(t => t.name === gameState.currentTier);
+                                if (newTierInfo) {
+                                    addLog(`Technological breakthrough! We have entered the era of: ${newTierInfo.name}.`);
+                                    updateVisuals(newTierInfo.visual_prompt, '⚙️');
+                                }
+                            }
+
+                            populateUpgrades();
+                            updateUI();
+                        }
+                    });
+                    UIElements.upgradesPanel.appendChild(button);
+                });
+            }
+
+            // --- AI & WINNING ---
+            async function handleAILog() {
+                const btn = UIElements.aiLogBtn;
+                const originalText = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<span class="small-spinner"></span> Generating...';
+                const prompt = `You are the lead scientist on a secret project turning trash into a cosmic object. Write a short, dramatic, and slightly humorous log entry. The current state of the experiment is: Stage: ${gameState.stage}, Mass: ${formatNumber(gameState.mass)} kg. We have completed ${gameState.upgradesPurchased} technological upgrades and are in the "${gameState.currentTier}" era.`;
+                const aiLog = await callGeminiText(prompt);
+                if (aiLog) { addLog(aiLog, true); }
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+
+            async function handleWin() {
+                setStage('Chicken Nugget Pocket Dimension');
+                UIElements.winModal.classList.remove('hidden');
+                
+                const storyPrompt = `Write a short, epic, and slightly funny victory story (3-4 paragraphs) for a player who just won a game by completing 1000 technological upgrades, turning cosmic trash into a black hole, then a wormhole, and finally stabilizing it into a pocket dimension made of chicken nuggets.`;
+                UIElements.winStory.innerHTML = `<div class="flex justify-center items-center h-full"><div class="small-spinner"></div><p class="ml-2">Writing victory epic...</p></div>`;
+                const story = await callGeminiText(storyPrompt);
+                UIElements.winStory.innerHTML = story ? `<p>${story.replace(/\n/g, '</p><p>')}</p>` : "<p>Your achievement is beyond words. The Nuggetverse is born.</p>";
+                
+                const imageBase64 = await callGeminiImage(STAGES['Chicken Nugget Pocket Dimension'].visual_prompt);
+                if (imageBase64) {
+                    UIElements.winVisual.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.src = `data:image/png;base64,${imageBase64}`;
+                    img.className = 'w-32 h-32 mx-auto rounded-full';
+                    UIElements.winVisual.appendChild(img);
+                }
+            }
+
+            // --- INITIALIZATION & MAIN LOOP ---
+            function gameLoop() {
+                gameState.mass += gameState.trashPerSecond;
+                if (['Star', 'Supernova', 'Black Hole', 'Wormhole'].includes(gameState.stage)) {
+                    gameState.mass += gameState.energyPerSecond * 50; // Energy contributes to mass
+                }
+
+                checkStage();
+                checkWinCondition();
+                updateUI();
+                
+                const upgradeButtons = UIElements.upgradesPanel.querySelectorAll('button');
+                upgradeButtons.forEach(button => {
+                    const upgradeId = parseInt(button.id.split('-')[1]);
+                    const upgrade = ALL_UPGRADES[upgradeId];
+                    if (upgrade) {
+                        button.disabled = !(gameState[upgrade.currency] >= upgrade.cost);
+                    }
+                });
+            }
+
+            function checkStage() {
+                const currentStageInfo = STAGES[gameState.stage];
+                if (!currentStageInfo || !currentStageInfo.nextStage) return;
+
+                let conditionMet = false;
+                if (currentStageInfo.mass_req && gameState.mass >= currentStageInfo.mass_req) {
+                    conditionMet = true;
+                } else if (currentStageInfo.singularity_req && gameState.singularityPower >= currentStageInfo.singularity_req) {
+                     conditionMet = true;
+                }
+
+                if (conditionMet) {
+                    setStage(currentStageInfo.nextStage);
+                }
+            }
+
+            function checkWinCondition() {
+                 if (gameState.upgradesPurchased >= 1000 && gameState.stage !== 'Chicken Nugget Pocket Dimension') {
+                    handleWin();
+                 }
+            }
+            
+            // Event Listeners
+            UIElements.addTrashBtn.addEventListener('click', () => { 
+                gameState.mass += gameState.trashPerClick; 
+                createTrashAnimation();
+                updateUI(); 
+            });
+            UIElements.aiLogBtn.addEventListener('click', handleAILog);
+
+            // Initial setup
+            generateAllUpgrades();
+            gameState.currentTier = ALL_UPGRADES[0].tier;
+            updateVisuals(STAGES['Rubbish Bin'].visual_prompt, '🗑️');
+            populateUpgrades();
+            updateUI();
+            setInterval(gameLoop, 1000);
+        });
+    </script>
+</body>
+</html>
+e="color:#eff0f1;background-color:#151b21;">&lt;div class="text-xs text-amber-300"&gt;Cost: ${formatNumber(upgrade.cost)} ${upgrade.curr</span><br>ency}&lt;/div&gt;`;<span style="color:#eff0f1;background-color:#151b21;">
 </span><br>
 <br> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<span style="color:#eff0f1;background-color:#151b21;">button.disabled = !(gameState[upgrade.currency] &gt;= upgrade.cost);</span><span style="color:#eff0f1;background-color:#151b21;">
 </span><br>
